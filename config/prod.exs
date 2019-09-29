@@ -11,7 +11,7 @@ use Mix.Config
 # before starting your production server.
 config :word_banks, WordBanksWeb.Endpoint,
   load_from_system_env: true,
-  url: [scheme: "https", host: "word-banks.herokuapp.com", port: 443],
+  url: [scheme: "https", host: "word-banks", port: 443],
   force_ssl: [rewrite_on: [:x_forwarded_proto]],
   cache_static_manifest: "priv/static/cache_manifest.json",
   secret_key_base: Map.fetch!(System.get_env(), "SECRET_KEY_BASE")
@@ -24,7 +24,7 @@ config :word_banks, WordBanks.Repo,
   adapter: Ecto.Adapters.Postgres,
   url: System.get_env("DATABASE_URL"),
   pool_size: String.to_integer(System.get_env("POOL_SIZE") || "10"),
-  ssl: true
+  # ssl: true
 
 # ## SSL Support
 #
