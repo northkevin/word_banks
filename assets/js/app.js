@@ -20,9 +20,10 @@ import "phoenix_html"
 
 import socket from "./socket"
 
-var channel = socket.channel('chat_room:lobby', {}); // connect to chat "room"
+var channel = socket.channel('room:lobby', {}); // connect to chat "room"
 
 channel.on('shout', function (payload) { // listen to the 'shout' event
+	console.log(`payload: ${payload}`)
   var li = document.createElement("li"); // creaet new list item DOM element
   var name = payload.name || 'guest';    // get name from payload or set default
   li.innerHTML = '<b>' + name + '</b>: ' + payload.message;
@@ -38,6 +39,8 @@ var msg = document.getElementById('msg');            // message input field
 
 // "listen" for the [Enter] keypress event to send a message:
 msg.addEventListener('keypress', function (event) {
+	console.log(event.keyCode)
+	console.log(msg.value)
   if (event.keyCode == 13 && msg.value.length > 0) { // don't sent empty msg.
     channel.push('shout', { // send the message to the server
       name: name.value,     // get value of "name" of person sending the message

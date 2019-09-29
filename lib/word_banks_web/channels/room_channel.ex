@@ -3,6 +3,7 @@ defmodule WordBanksWeb.RoomChannel do
 
   def join("room:lobby", payload, socket) do
     if authorized?(payload) do
+      send(self(), :after_join)
       {:ok, socket}
     else
       {:error, %{reason: "unauthorized"}}
@@ -18,7 +19,26 @@ defmodule WordBanksWeb.RoomChannel do
   # It is also common to receive messages from the client and
   # broadcast to everyone in the current topic (room:lobby).
   def handle_in("shout", payload, socket) do
-    broadcast socket, "shout", payload
+    payload
+    |> IO.inspect(label: "room_channel - paylod:")
+
+    WordBanks.Message.changeset(%WordBanks.Message{}, payload)
+    |> WordBanks.Repo.insert()
+
+    broadcast(socket, "shout", payload)
+    {:noreply, socket}
+  end
+
+  def handle_info(:after_join, socket) do
+    WordBanks.Message.get_messages()
+    |> Enum.each(fn msg ->
+      push(socket, "shout", %{
+        name: msg.name,
+        message: msg.message
+      })
+    end)
+
+    # :noreply
     {:noreply, socket}
   end
 
