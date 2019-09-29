@@ -2,7 +2,7 @@ defmodule WordBanksWeb.UserSocket do
   use Phoenix.Socket
 
   ## Channels
-  # channel "room:*", WordBanksWeb.RoomChannel
+  channel "room:lobby", WordBanksWeb.RoomChannel
 
   # Socket params are passed from the client and can
   # be used to verify and authenticate a user. After
