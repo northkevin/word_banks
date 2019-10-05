@@ -13,7 +13,7 @@ config :word_banks,
 # Configures the endpoint
 config :word_banks, WordBanksWeb.Endpoint,
   url: [host: "localhost"],
-  secret_key_base: "Lm3E4ARrAsL0fykxVHt1I49VmrYLhDHPqh7HrLBS+Y1+ufDHt0SEn1CT3Fxbnm/P",
+  secret_key_base: System.get_env("SECRETY_KEY_BASE"),
   render_errors: [view: WordBanksWeb.ErrorView, accepts: ~w(html json)],
   pubsub: [name: WordBanks.PubSub, adapter: Phoenix.PubSub.PG2]
 
