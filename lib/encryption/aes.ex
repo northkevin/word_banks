@@ -17,8 +17,13 @@ defmodule WordBanks.Encryption.AES do
     :crypto.block_decrypt(:aes_gcm, get_key(), iv, {@aad, ciphertext, tag})
   end
 
+  def decrypt(ciphertext, key_id) do
+    <<iv::binary-16, tag::binary-16, ciphertext::binary>> = ciphertext
+    :crypto.block_decrypt(:aes_gcm, get_key(key_id), iv, {@aad, ciphertext, tag})
+  end
+
   defp get_key do
-    keys = Application.get_env(:word_banks, Encryption.AES)[:keys]
+    keys = Application.get_env(:word_banks, WordBanks.Encryption.AES)[:keys]
     # get the last/latest key from the key list
     count = Enum.count(keys) - 1
     # use get_key/1 to retrieve the desired encryption key.
@@ -27,7 +32,7 @@ defmodule WordBanks.Encryption.AES do
 
   defp get_key(key_id) do
     # cached call
-    keys = Application.get_env(:word_banks, Encryption.AES)[:keys]
+    keys = Application.get_env(:word_banks, WordBanks.Encryption.AES)[:keys]
     # retrieve the desired key by key_id from keys list.
     Enum.at(keys, key_id)
   end

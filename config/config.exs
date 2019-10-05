@@ -50,7 +50,7 @@ rescue
 end
 
 # Set the Encryption Keys as an "Application Variable" accessible in aes.ex
-config :word_banks, Encryption.AES,
+config :word_banks, WordBanks.Encryption.AES,
   # get the ENCRYPTION_KEYS env variable
   keys:
     System.get_env("ENCRYPTION_KEYS")
