@@ -1,6 +1,6 @@
-defmodule WordBanks.PasswordFieldTest do
+defmodule WordBanks.Encryption.PasswordFieldTest do
   use ExUnit.Case
-  alias WordBanks.PasswordField, as: Field
+  alias WordBanks.Encryption.PasswordField, as: Field
 
   test "hash_password/1 uses Argon2id to Hash a value" do
     password = "EverythingisAwesome"

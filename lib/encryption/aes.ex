@@ -1,4 +1,4 @@
-defmodule Encryption.AES do
+defmodule WordBanks.Encryption.AES do
   # Use AES 256 Bit Keys for Encryption.
   @aad "AES256GCM"
 

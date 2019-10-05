@@ -1,7 +1,7 @@
-defmodule WordBanks.Encryption.HashFieldTest do
+defmodule WordBanks.Encryption.EncryptedFieldTest do
   use ExUnit.Case
   # our Ecto Custom Type for hashed fields
-  alias WordBanks.Encryption.HashField, as: Field
+  alias WordBanks.Encryption.EncryptedField, as: Field
 
   test ".type is :binary" do
     assert Field.type() == :binary

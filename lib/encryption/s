@@ -1,0 +1,31 @@
+decrypt
+
+	- IV prepended
+	- cypher type prepended
+
+
+
+
+.... whoa
+
+
+so IP packet comes in .. what type of packet is it???
+
+first like 8 bits in the packet I think identify the type..
+
+google says - first 16 bits
+
+0101010101010101010101
+
+
+0 -  2^0 - 1 bits
+01 - 2^1 - 2 bits
+001 - 2^2 - 4 bits
+0001 - 2^3 - 8 bits
+00001 - 2^4 - 16 bits
+
+
+
+def packet_parse(packet) do
+	<<identifier::binary-16, 
+

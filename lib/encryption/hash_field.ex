@@ -1,4 +1,4 @@
-defmodule WordBanks.HashField do
+defmodule WordBanks.Encryption.HashField do
   @behaviour Ecto.Type
 
   def type, do: :binary
@@ -17,8 +17,6 @@ defmodule WordBanks.HashField do
 
   def hash(value) do
     get_salt(value)
-    |> IO.inspect(label: "get_salt")
-
     :crypto.hash(:sha256, value <> get_salt(value))
   end
 

@@ -1,6 +1,6 @@
-defmodule Encryption.AESTest do
+defmodule WordBanks.Encryption.AESTest do
   use ExUnit.Case
-  alias Encryption.AES
+  alias WordBanks.Encryption.AES
 
   test ".encrypt includes the random IV in the value" do
     <<iv::binary-16, ciphertext::binary>> = AES.encrypt("hello")
