@@ -16,7 +16,6 @@ defmodule WordBanks.Encryption.HashField do
   end
 
   def hash(value) do
-    get_salt(value)
     :crypto.hash(:sha256, value <> get_salt(value))
   end
 
