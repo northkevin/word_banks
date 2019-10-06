@@ -1,7 +1,7 @@
 defmodule WordBanks.User do
   use Ecto.Schema
   import Ecto.Changeset
-  alias WordBanks.Encryption.{EncryptedField, HashField}
+  alias WordBanks.Encryption.{EncryptedField, HashField, PasswordField}
   alias WordBanks.{User, Repo}
 
   schema "users" do
