@@ -47,6 +47,10 @@ defmodule WordBanks.User do
       true ->
         changeset
         |> put_change(:email_hash, HashField.hash(changeset.data.email))
+        |> put_change(
+          :password_hash,
+          PasswordField.hash_password(changeset.data.password)
+        )
 
       _ ->
         # return unmodified
