@@ -17,6 +17,7 @@ defmodule WordBanksWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :index
+    get "/signup", SignupController, :index
   end
 
   # Other scopes may use custom stacks.
