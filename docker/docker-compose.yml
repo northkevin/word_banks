@@ -1,0 +1,15 @@
+postgres:
+  image: postgres:9.6.14-alpine
+  ports:
+    - "5432:5432"
+  volumes_from:
+    - pgdata
+  environment:
+    POSTGRES_USER: postgres
+    POSTGRES_PASSWORD: postgres
+    POSTGRES_DB: word_banks_dev
+
+pgdata:
+  image: busybox
+  volumes:
+    - /data
